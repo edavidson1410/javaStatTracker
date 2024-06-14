@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Team {
@@ -13,7 +14,7 @@ public class Team {
     private String name;
     private String location;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "player_id", fetch = FetchType.EAGER)
     private List<Player> players = new ArrayList<>();
 
     Team() {}
@@ -21,6 +22,7 @@ public class Team {
     public Team(String name, String location) {
         this.name = name;
         this.location = location;
+        this.players = new ArrayList<>();
     }
 
     public String getName() {
@@ -49,5 +51,28 @@ public class Team {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return Objects.equals(team_id, team.team_id) && Objects.equals(name, team.name) && Objects.equals(location, team.location) && Objects.equals(players, team.players);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(team_id, name, location, players);
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "team_id=" + team_id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", players=" + players +
+                '}';
     }
 }

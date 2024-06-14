@@ -18,19 +18,22 @@ public class SeedDatabase {
     private static final Logger log = LoggerFactory.getLogger(SeedDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(TeamRepository repository) {
+    CommandLineRunner initDatabase(PlayerRepository playerRepository, TeamRepository teamRepository) {
+
+        Team bombers = new Team("St. Louis Bombers", "St. Louis, MO");
+        teamRepository.save(bombers);
+
+        Team dbBombers = teamRepository.findById(1L).orElse(null);
+
+        Player player1 = new Player("Eric Davidson", "Jackson, MO", new Date(1992, 7, 26), dbBombers);
+        Player player2 = new Player("Aidan Milne", "Motueka, New Zealand", new Date(1995, 4, 24), dbBombers);
+        playerRepository.save(player1);
+        playerRepository.save(player2);
 
         return args -> {
-            log.info("Preloading " + repository.save(new Team("St. Louis Bombers", "St. Louis, MO")));
-        };
-    }
-
-    @Bean
-    CommandLineRunner initDatabase(PlayerRepository repository) {
-
-        return args -> {
-            log.info("Preloading " + repository.save(new Player("Eric Davidson", "Jackson, MO", new Date(1992, 7, 26), new Team("St. Louis Bombers", "St. Louis, MO"))));
-            log.info("Preloading " + repository.save(new Player("Aidan Milne", "Motueka, New Zealand", new Date(1995, 4, 24), new Team("St. Louis Bombers", "St. Louis, MO"))));
+            log.info("Preloading " + bombers.toString());
+            log.info("Preloading " + player1.toString());
+            log.info("Preloading " + player2.toString());
         };
     }
 }

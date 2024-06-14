@@ -17,7 +17,7 @@ public class Player {
 
     private Date birthdate;
 
-    @ManyToOne @JoinColumn(name = "team_id")
+    @ManyToOne(cascade = CascadeType.MERGE) @JoinColumn(name = "team_id")
     private Team team;
 
     Player() {}
