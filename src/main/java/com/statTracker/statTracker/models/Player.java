@@ -20,7 +20,10 @@ public class Player {
     @ManyToOne(cascade = CascadeType.MERGE) @JoinColumn(name = "team_id")
     private Team team;
 
-    Player() {}
+    @OneToMany(mappedBy = "player_game_id", fetch = FetchType.EAGER)
+    private PlayerStatistics playerGameStat;
+
+    public Player() {}
 
     public Player(String name, String hometown, Date birthdate, Team team) {
         this.name = name;

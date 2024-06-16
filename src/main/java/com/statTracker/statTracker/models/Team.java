@@ -17,7 +17,7 @@ public class Team {
     @OneToMany(mappedBy = "player_id", fetch = FetchType.EAGER)
     private List<Player> players = new ArrayList<>();
 
-    Team() {}
+    public Team() {}
 
     public Team(String name, String location) {
         this.name = name;
