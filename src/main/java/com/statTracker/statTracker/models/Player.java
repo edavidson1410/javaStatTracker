@@ -1,6 +1,7 @@
 package com.statTracker.statTracker.models;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -21,7 +22,7 @@ public class Player {
     private Team team;
 
     @OneToMany(mappedBy = "player_game_id", fetch = FetchType.EAGER)
-    private PlayerStatistics playerGameStat;
+    private List<PlayerStatistic> playerStatistics;
 
     public Player() {}
 
@@ -30,6 +31,10 @@ public class Player {
         this.hometown = hometown;
         this.birthdate = birthdate;
         this.team = team;
+    }
+
+    public Long getPlayer_id() {
+        return player_id;
     }
 
     public Team getTeam() {
@@ -66,6 +71,10 @@ public class Player {
 
     public Long getPlayerId() {
         return player_id;
+    }
+
+    public List<PlayerStatistic> getPlayerStatistics() {
+        return playerStatistics;
     }
 
     @Override

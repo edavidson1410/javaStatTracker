@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class PlayerStatistics {
+public class PlayerStatistic {
 
     @Id
     @GeneratedValue
@@ -24,17 +24,18 @@ public class PlayerStatistics {
     private int dropGoals_made;
 
     @ManyToOne(cascade = CascadeType.MERGE) @JoinColumn(name = "player_id")
-    private PlayerStatistics playerGameStat;
+    private Player player;
 
-    public PlayerStatistics() { }
+    public PlayerStatistic() { }
 
-    public PlayerStatistics(int minutes, int tries, int conversions_attempted, int conversions_made, int dropGoals_attempted, int dropGoals_made) {
+    public PlayerStatistic(int minutes, int tries, int conversions_attempted, int conversions_made, int dropGoals_attempted, int dropGoals_made, Player player) {
         this.minutes = minutes;
         this.tries = tries;
         this.conversions_attempted = conversions_attempted;
         this.conversions_made = conversions_made;
         this.dropGoals_attempted = dropGoals_attempted;
         this.dropGoals_made = dropGoals_made;
+        this.player = player;
     }
 
     public Long getPlayer_game_id() {
@@ -93,7 +94,7 @@ public class PlayerStatistics {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlayerStatistics that = (PlayerStatistics) o;
+        PlayerStatistic that = (PlayerStatistic) o;
         return minutes == that.minutes && tries == that.tries && conversions_attempted == that.conversions_attempted && conversions_made == that.conversions_made && dropGoals_attempted == that.dropGoals_attempted && dropGoals_made == that.dropGoals_made && Objects.equals(player_game_id, that.player_game_id);
     }
 

@@ -17,11 +17,11 @@ public class Game {
     private String location;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "home_team_id")
     private Team home_team;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "away_team_id")
     private Team away_team;
 
     private int home_score;
