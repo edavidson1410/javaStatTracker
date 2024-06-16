@@ -45,8 +45,11 @@ public class SeedDatabase {
 
         return args -> {
             log.info("Preloading " + bombers.toString());
+            log.info("Preloading " + belmontShore.toString());
             log.info("Preloading " + player1.toString());
             log.info("Preloading " + player2.toString());
+            log.info("Preloading " + championship.toString());
+            log.info("Preloading " + davidson1.toString());
         };
     }
 }

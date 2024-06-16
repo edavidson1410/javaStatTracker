@@ -116,4 +116,11 @@ public class Game {
                 ", away_score=" + away_score +
                 '}';
     }
+
+    public Team getWinner() {
+        if(away_score > home_score) {
+            return away_team;
+        }
+        return home_team;
+    }
 }
