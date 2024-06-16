@@ -1,7 +1,6 @@
 package com.statTracker.statTracker.controllers;
 
 import com.statTracker.statTracker.models.Game;
-import com.statTracker.statTracker.models.Player;
 import com.statTracker.statTracker.services.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
